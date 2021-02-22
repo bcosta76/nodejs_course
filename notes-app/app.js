@@ -1,10 +1,9 @@
 //const validator = require ('validator')
-const chalk = require('chalk');
 const yargs = require('yargs' );
 const notes = require('./notes.js');
 
 // yargs version
-yargs.version('0.9');
+yargs.version('0.9.0');
 
 // create add command
 yargs.command({
@@ -39,7 +38,7 @@ yargs.command({
     }
   },
   handler: function (argv) {
-    console.log('Title:', argv.title);
+    notes.removeNote(argv.title);
   }
 });
 
