@@ -1,5 +1,6 @@
 //const validator = require ('validator')
 const yargs = require('yargs' );
+const { listNotes } = require('./notes.js');
 const notes = require('./notes.js');
 
 // yargs version
@@ -21,7 +22,7 @@ yargs.command({
         type: 'string'
       }
   },
-  handler: function (argv) {
+  handler (argv) {
     notes.addNote(argv.title, argv.body);
   }
 });
@@ -37,7 +38,7 @@ yargs.command({
         type: 'string'
     }
   },
-  handler: function (argv) {
+  handler (argv) {
     notes.removeNote(argv.title);
   }
 });
@@ -46,8 +47,8 @@ yargs.command({
 yargs.command({
   command: 'list',
   describe: 'List all notes',
-  handler: function () {
-    console.log('Listing');
+  handler () {
+    listNotes();
   }
 });
 
@@ -62,7 +63,7 @@ yargs.command({
       type: 'string'
     }
   },
-  handler: function (argv) {
+  handler (argv) {
     console.log('Title:', argv.title)
   }
 });
