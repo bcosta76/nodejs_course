@@ -4,16 +4,14 @@ const yargs = require('yargs');
 const { notStrictEqual } = require('assert');
 
 
-const getNotes = () => {
-    //return loadNotes();
-    console.log('Retunr your notes...');
-}
-
 const addNote = (title, body) => {
     const notes = loadNotes();
-    const duplicateNotes = notes.filter((note) => note.title === title);
+    //const duplicateNotes = notes.filter((note) => note.title === title);
+    const duplicateNote = notes.find((note) => note.title === title);
 
-    if (duplicateNotes.length === 0) {
+    debugger
+
+    if (!duplicateNote) {
         notes.push({
             title: title,
             body: body
@@ -47,6 +45,14 @@ const listNotes = () => {
     }
 }
 
+const readNote = (title) => {
+    const notes = loadNotes();
+    const note = notes.find((note) => note.title = title);
+    if(note) {
+        console.log(chalk.green.inverse("Title:",note.title));
+        console.log(chalk.green.inverse("Body:", note.body));
+    }
+}
 
 // internal functions
 const saveNotes = (notes) => {
@@ -64,8 +70,8 @@ const loadNotes = () => {
 }
 
 module.exports = {
-    getNotes: getNotes,
     addNote: addNote,
     removeNote: removeNote,
-    listNotes: listNotes
+    listNotes: listNotes,
+    readNote: readNote
 }
